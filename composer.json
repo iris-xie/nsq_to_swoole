@@ -1,0 +1,22 @@
+{
+  "name": "iris/nsq_to_swoole",
+  "description": "a strong php client for NSQ using swoole extension",
+  "keywords": ["nsq", "swoole", "client", "php", "socket"],
+  "homepage": "https://github.com/iris-xie",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Iris Xie",
+      "homepage": "https://github.com/iris-xie"
+    }
+  ],
+  "require": {
+    "php": ">=5.5",
+    "ext-swoole": ">=1.8.6"
+  },
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {"Iris\\NsqToSwoole\\": "source/"}
+  }
+}
