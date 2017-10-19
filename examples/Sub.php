@@ -8,7 +8,7 @@
 require __DIR__ . '/../autoload.php';
 
 $lookup = new Iris\NsqToSwoole\Lookup\Lookupd([
-    ['host' => '192.168.9.135', 'port' => 4161],
+    ['host' => '139.196.205.19', 'port' => 4161],
 ]);
 
 $client = new Iris\NsqToSwoole\Client;
