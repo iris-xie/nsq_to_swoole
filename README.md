@@ -1,7 +1,7 @@
 # nsq_to_swoole
 
 
-client for NSQ using php-swoole
+a strong php client for NSQ using swoole extension
 
 ### 必要组件
 
