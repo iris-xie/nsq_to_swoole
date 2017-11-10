@@ -34,7 +34,7 @@ class HttpClient {
     public static function getInstance() {
         try {
             if (empty($module)) {
-                throw new \InvalidArgumentException('NsqHttpClient: module key can not be empty');
+                throw new \InvalidArgumentException('HttpClient: module key can not be empty');
             }
             if ( ! isset(self::$_instances)) {
                 self::$_instances = new self();
@@ -70,7 +70,7 @@ class HttpClient {
         $requestId = uniqid();
         try {
             if (empty($nsqDatas) || ! is_array($nsqDatas)) {
-                throw new \InvalidArgumentException('NsqHttpClient: nsq data is empty or not an array');
+                throw new \InvalidArgumentException('HttpClient: nsq data is empty or not an array');
             }
             $clientInfo = array(
                 'host' => $this->_host,
@@ -133,7 +133,7 @@ class HttpClient {
     private function config($config) {
 
         if( ! isset($config['host']) || ! isset($config['http_port']) || ! isset($config['topic'])) {
-            throw new \InvalidArgumentException('NsqHttpClient: Nsq host, http_port or topic is not set');
+            throw new \InvalidArgumentException('HttpClient: Nsq host, http_port or topic is not set');
         }
         $this->_host = $config['host'];
         $this->_port = $config['http_port'];
