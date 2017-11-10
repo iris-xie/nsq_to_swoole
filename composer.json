@@ -13,7 +13,8 @@
   ],
   "require": {
     "php": ">=5.5",
-    "ext-swoole": ">=1.8.6"
+    "ext-swoole": ">=1.8.6",
+    "guzzlehttp/guzzle":">=4.0.0"
   },
   "minimum-stability": "dev",
   "autoload": {
