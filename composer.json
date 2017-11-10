@@ -14,7 +14,7 @@
   "require": {
     "php": ">=5.5",
     "ext-swoole": ">=1.8.6",
-    "guzzlehttp/guzzle":">=4.0.0"
+    "ixudra/curl":"6.*"
   },
   "minimum-stability": "dev",
   "autoload": {
