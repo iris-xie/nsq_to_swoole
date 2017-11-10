@@ -11,7 +11,7 @@
  * @create 2016-04-22
  */
 namespace Iris\NsqToSwoole;
-use GuzzleHttp\Client;
+use Ixudra\Curl\Facades\Curl;
 class HttpClient {
     private $_host;
     private $_port;
@@ -73,8 +73,6 @@ class HttpClient {
                 throw new \InvalidArgumentException('NsqHttpClient: nsq data is empty or not an array');
             }
             $clientInfo = array(
-                'userId' => self::$_userId,
-                'corpId' => self::$_corpId,
                 'host' => $this->_host,
                 'port' => $this->_port,
                 'topic' => $this->_topic,
@@ -91,14 +89,13 @@ class HttpClient {
                 $message = json_encode($nsqDatas);
             }
             $start = microtime(true);
+            $result = false;
             for ($i = 0; $i <= $this->_retryTimes; $i++) {
                 try {
-                    $response = $this->_nch->request(
-                        'POST',
-                        "/{$cmd}?topic={$this->_topic}",
-                        ['body' => $message]
-                    );
-                    if ($result = ($response->getStatusCode() == 200)) {
+                    $response = Curl::to("http://{$this->_host}:{$this->_port}/{$cmd}?topic={$this->_topic}")->withData($message)->returnResponseObject()->post();
+                    dd($response);
+                    if ($response->content == 200  && $response->content == 'ok') {
+                        $result = true;
                         $clientInfo['RequestTime'] = microtime(true) - $start;
                         break;
                     }
