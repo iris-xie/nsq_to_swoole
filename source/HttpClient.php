@@ -93,7 +93,7 @@ class HttpClient {
             for ($i = 0; $i <= $this->_retryTimes; $i++) {
                 try {
                     $response = Curl::to("http://{$this->_host}:{$this->_port}/{$cmd}?topic={$this->_topic}")->withData($message)->returnResponseObject()->post();
-                    if ($response->content == 'ok') {
+                    if ($response->status == 200 && $response->content == 'OK') {
                         $result = true;
                         $clientInfo['RequestTime'] = microtime(true) - $start;
                         break;
