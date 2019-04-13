@@ -34,14 +34,23 @@ class Consumer extends AbstractMonitor {
     protected $callback;
 
     /**
+     * indicate you are ready to receive N messages
+     *
+     * @var int
+     */
+    protected $rdy;
+
+    /**
      * @param string $topic
      * @param string $channel
      * @param callable $callback
+     * @param int $rdy
      */
-    public function initSubscribe($topic, $channel, $callback) {
+    public function initSubscribe($topic, $channel, $callback, $rdy) {
         $this->topic = $topic;
         $this->channel = $channel;
         $this->callback = $callback;
+        $this->rdy = $rdy;
     }
 
     /**
@@ -89,7 +98,6 @@ class Consumer extends AbstractMonitor {
 
             // mark as done; get next on the way
             $monitor->send(Command::fin($msg->getId()));
-            $monitor->send(Command::rdy(1));
 
         } elseif (Response::isOK($frame)) {
             //ignore
@@ -112,7 +120,7 @@ class Consumer extends AbstractMonitor {
         }
 
         $monitor->send(Command::sub($this->topic, $this->channel));
-        $monitor->send(Command::rdy(1));
+        $monitor->send(Command::rdy($this->rdy));
     }
 
     /**

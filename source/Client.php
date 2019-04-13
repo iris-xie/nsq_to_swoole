@@ -70,9 +70,10 @@ class Client {
      * @param string $topic
      * @param string $channel
      * @param callable $callback
+     * @param int $rdy indicate you are ready to receive N messages
      * @return $this
      */
-    public function sub(LookupInterface $lookup, $topic, $channel, $callback) {
+    public function sub(LookupInterface $lookup, $topic, $channel, $callback, $rdy = 1) {
         $hosts = $lookup->lookupHosts($topic);
 
         foreach ($hosts as $item) {
@@ -80,7 +81,7 @@ class Client {
             $port = isset($item['port']) ? $item['port'] : 4150;
 
             $consumer = new Consumer($host, $port, $this->timeout, $this->setting);
-            $consumer->initSubscribe($topic, $channel, $callback);
+            $consumer->initSubscribe($topic, $channel, $callback, $rdy);
             $consumer->getMonitor();
 
             $this->consumerPool[] = $consumer;
