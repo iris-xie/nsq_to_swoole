@@ -1,14 +1,14 @@
 {
-  "name": "iris/nsq_to_swoole",
+  "name": "marlonfan/nsq_to_swoole",
   "description": "a strong php client for NSQ using swoole extension",
   "keywords": ["nsq", "swoole", "client", "php", "socket"],
-  "homepage": "https://github.com/iris-xie",
+  "homepage": "https://github.com/marlonfan",
   "type": "library",
   "license": "MIT",
   "authors": [
     {
-      "name": "Iris Xie",
-      "homepage": "https://github.com/iris-xie"
+      "name": "Marlon Fan",
+      "homepage": "https://github.com/marlonfan"
     }
   ],
   "require": {
